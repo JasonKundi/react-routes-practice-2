@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 function EditProductPage(props) {
 
@@ -12,6 +13,14 @@ function EditProductPage(props) {
   //Use useEffect so that when the location changes
   //you get the product data from the location. See
   //ViewProductPage.js to check
+
+  const location = useLocation()
+
+  useEffect(() => {
+    if(location.state) {
+      setProductToUpdate(location.state.product)
+    }
+  }, [location])
 
   function handleChange(event) {
     const name = event.target.name;
